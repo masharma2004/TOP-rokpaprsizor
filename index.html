@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice() {
+            const choices = ['Rock', 'Paper', 'Scissors'];
+            return choices[Math.floor(Math.random() * 3)];
+        }
+           
+        function getPlayerChoice() {
+            let v = prompt('Enter your choice');
+            if (v === null) {
+                // Handle the case where the user cancels the prompt.
+                alert('Game canceled');
+                return null;
+            }
+            let choice = v.charAt(0).toUpperCase() + v.slice(1).toLowerCase();
+            return choice;
+        }
+
+        let computerScore = 0;
+        let playerScore = 0;
+
+        function playRound(ComputerChoice, PlayerChoice) {
+            let resultMessage = '';
+            if (PlayerChoice === ComputerChoice) {
+                resultMessage = 'Tie';
+            } else if (PlayerChoice === 'Rock') {
+                if (ComputerChoice === 'Paper') {
+                    computerScore++;
+                    resultMessage = 'You Lose! Paper beats Rock';
+                } else {
+                    playerScore++;
+                    resultMessage = 'You won! Rock beats Scissors';
+                }
+            } else if (PlayerChoice === 'Scissors') {
+                if (ComputerChoice === 'Rock') {
+                    computerScore++;
+                    resultMessage = 'You Lose! Rock beats Scissors';
+                } else {
+                    playerScore++;
+                    resultMessage = 'You won! Scissors beat Paper';
+                }
+            } else if (PlayerChoice === 'Paper') {
+                if (ComputerChoice === 'Scissors') {
+                    computerScore++;
+                    resultMessage = 'You Lose! Scissors beat Paper';
+                } else {
+                    playerScore++;
+                    resultMessage = 'You won! Paper beats Rock';
+                }
+            } else {
+                resultMessage = 'Invalid choice';
+            }
+
+            return resultMessage;
+        }
+
+        function game() {
+            for (let i = 0; i < 5; i++) {
+                const ComputerChoice = getComputerChoice();
+                const PlayerChoice = getPlayerChoice();
+
+                if (PlayerChoice === null) {
+                    // If the player cancels the game, exit the loop.
+                    break;
+                }
+
+                const roundResult = playRound(ComputerChoice, PlayerChoice);
+                console.log(roundResult);
+            }
+
+            console.log(`Player Score: ${playerScore}`);
+            console.log(`Computer Score: ${computerScore}`);
+        }
+
+        game();
+    </script>
+</body>
+</html>
