@@ -3,83 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="external.js" defer></script>
     <title>Rock, Paper, Scissors</title>
 </head>
 <body>
-    <script>
-        function getComputerChoice() {
-            const choices = ['Rock', 'Paper', 'Scissors'];
-            return choices[Math.floor(Math.random() * 3)];
-        }
-           
-        function getPlayerChoice() {
-            let v = prompt('Enter your choice');
-            if (v === null) {
-                // Handle the case where the user cancels the prompt.
-                alert('Game canceled');
-                return null;
-            }
-            let choice = v.charAt(0).toUpperCase() + v.slice(1).toLowerCase();
-            return choice;
-        }
-
-        let computerScore = 0;
-        let playerScore = 0;
-
-        function playRound(ComputerChoice, PlayerChoice) {
-            let resultMessage = '';
-            if (PlayerChoice === ComputerChoice) {
-                resultMessage = 'Tie';
-            } else if (PlayerChoice === 'Rock') {
-                if (ComputerChoice === 'Paper') {
-                    computerScore++;
-                    resultMessage = 'You Lose! Paper beats Rock';
-                } else {
-                    playerScore++;
-                    resultMessage = 'You won! Rock beats Scissors';
-                }
-            } else if (PlayerChoice === 'Scissors') {
-                if (ComputerChoice === 'Rock') {
-                    computerScore++;
-                    resultMessage = 'You Lose! Rock beats Scissors';
-                } else {
-                    playerScore++;
-                    resultMessage = 'You won! Scissors beat Paper';
-                }
-            } else if (PlayerChoice === 'Paper') {
-                if (ComputerChoice === 'Scissors') {
-                    computerScore++;
-                    resultMessage = 'You Lose! Scissors beat Paper';
-                } else {
-                    playerScore++;
-                    resultMessage = 'You won! Paper beats Rock';
-                }
-            } else {
-                resultMessage = 'Invalid choice';
-            }
-
-            return resultMessage;
-        }
-
-        function game() {
-            for (let i = 0; i < 5; i++) {
-                const ComputerChoice = getComputerChoice();
-                const PlayerChoice = getPlayerChoice();
-
-                if (PlayerChoice === null) {
-                    // If the player cancels the game, exit the loop.
-                    break;
-                }
-
-                const roundResult = playRound(ComputerChoice, PlayerChoice);
-                console.log(roundResult);
-            }
-
-            console.log(`Player Score: ${playerScore}`);
-            console.log(`Computer Score: ${computerScore}`);
-        }
-
-        game();
-    </script>
+    <h1>Welcome to Rock Paper Scissors</h1>
+    <h2>Choose Your Weapon</h2>
+    <h3>First To 5 Wins!</h3>
+    <div class="btns">
+        <button class="btn" id="Rock"><img src="assests/rock.jpg" alt="Rock"/><span>Rock</span></button>
+        <button class="btn" id="Paper"><img src="assests/paper.png" alt="Paper"/><span>Paper</span></button>
+        <button class="btn" id="Scissors"><img src="assests/scissor.jpg" alt="Scissors"/><span>Scissors</span></button>
+    </div>
+    <div class="label">
+        <span id="playerLabel">Player scores</span>
+        <span id="computerLabel">Computer scores</span>
+      </div>
+    <div class="score">
+        <p class="text" id="player-score">Player Score:</p>
+        <p class="text" id="comp-score">Computer Score:</p>
+        </div>
+        <div><span id="resultsLabel">Results:</label></div>
+        <div id="roundResults"></div>
+        <div>
+            <button id="reset">Play Again!</button>
+          </div>
+        <div>
+            <p class="text" id="output">May the Best Person Win!</p>
+        </div>
+        <footer>Made by: <img id="gh-logo" src="assests/githublogo.png" alt="github logo"/><a href=https://github.com/masharma2004> Mayank Sharma </a>&copy; 2023</footer>
 </body>
 </html>
